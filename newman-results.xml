@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="FastAPI CRUD" tests="5" time="0.026">
+  <testsuite name="Create" id="076697a3-d4ab-4056-a2dc-cb99df383cef" timestamp="2025-04-20T14:39:35.238Z" tests="0" failures="0" errors="0" time="0.016"/>
+  <testsuite name="List" id="99e13d96-0d71-45f8-9a79-fb1872857e26" timestamp="2025-04-20T14:39:35.238Z" tests="0" failures="0" errors="0" time="0.003"/>
+  <testsuite name="GetOne" id="c1fcba73-ee03-481c-99e1-40c227793f19" timestamp="2025-04-20T14:39:35.238Z" tests="0" failures="0" errors="0" time="0.002"/>
+  <testsuite name="Update" id="fda2b58d-f766-4270-b178-7701488f8f9d" timestamp="2025-04-20T14:39:35.238Z" tests="0" failures="0" errors="0" time="0.002"/>
+  <testsuite name="Delete" id="1597fa34-0571-454d-b40b-b7fce3921e23" timestamp="2025-04-20T14:39:35.238Z" tests="0" failures="0" errors="0" time="0.003"/>
+</testsuites>
