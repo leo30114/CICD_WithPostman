@@ -1,0 +1,49 @@
+name: API 测试
+
+on:
+  push:
+    paths:
+      - 'main.py'
+      - 'tests/**'
+      - 'FastAPI_CRUD.postman_collection.json'
+      - 'FastAPI_Test.postman_environment.json'
+
+jobs:
+  newman-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # 安裝 Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 安裝 newman
+      - name: Install Newman
+        run: npm install -g newman
+
+      # 啟動 FastAPI（背景執行）
+      - name: Start FastAPI
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install fastapi uvicorn sqlalchemy pymysql
+          uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 5  # 等服務啟動
+
+      # 透過 newman 跑測試
+      - name: Run Postman tests
+        run: |
+          newman run FastAPI_CRUD.postman_collection.json \
+            --environment FastAPI_Test.postman_environment.json \
+            --reporters cli,junit \
+            --reporter-junit-export newman-results.xml
+
+      # 上傳測試報告（GitHub Actions 甚至可以 archive 作為 artifact）
+      - name: Upload JUnit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-results
+          path: newman-results.xml
