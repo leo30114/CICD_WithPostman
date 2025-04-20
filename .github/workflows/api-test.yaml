@@ -1,6 +1,7 @@
-name: API 测试
+name: API test
 
 on:
+  workflow_dispatch:    # 允许手动触发
   push:
     paths:
       - 'main.py'
