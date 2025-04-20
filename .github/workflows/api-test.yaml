@@ -3,12 +3,6 @@ name: API test
 on:
   workflow_dispatch:    # 允许手动触发
   push:
-    paths:
-      - 'main.py'
-      - 'tests/**'
-      - 'FastAPI_CRUD.postman_collection.json'
-      - 'FastAPI_Test.postman_environment.json'
-
 jobs:
   newman-test:
     runs-on: ubuntu-latest
@@ -43,8 +37,8 @@ jobs:
             --reporter-junit-export newman-results.xml
 
       # 上傳測試報告（GitHub Actions 甚至可以 archive 作為 artifact）
-      - name: Upload JUnit report
-        uses: actions/upload-artifact@v3
+      - name: Upload test report
+        uses: actions/upload-artifact@v3.1.2   # 或其他最新 v3.x.x 次版本
         with:
           name: newman-results
           path: newman-results.xml
