@@ -38,7 +38,7 @@ jobs:
 
       # 上傳測試報告（GitHub Actions 甚至可以 archive 作為 artifact）
       - name: Upload test report
-        uses: actions/upload-artifact@v3.1.2   # 或其他最新 v3.x.x 次版本
+        uses: actions/upload-artifact@v2   # 或其他最新 v3.x.x 次版本
         with:
           name: newman-results
           path: newman-results.xml
