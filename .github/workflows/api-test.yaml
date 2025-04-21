@@ -9,6 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # 使用最新的 Python 3.x 版本
+
       # 安裝 Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -38,7 +43,7 @@ jobs:
 
       # 上傳測試報告（GitHub Actions 甚至可以 archive 作為 artifact）
       - name: Upload test report
-        uses: actions/upload-artifact@v4 
+        uses: actions/upload-artifact@v4
         with:
           name: newman-results
           path: newman-results.xml
