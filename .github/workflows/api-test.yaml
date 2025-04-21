@@ -30,13 +30,14 @@ jobs:
           pip install pytest httpx pytest-asyncio
 
       # 啟動 FastAPI（背景執行）
-      - name: Start FastAPI
+      - name: Start FastAPI and Run pytest
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install fastapi uvicorn sqlalchemy pymysql
+          pip install fastapi uvicorn sqlalchemy pymysql pytest pytest-asyncio httpx
           uvicorn main:app --host 0.0.0.0 --port 8000 &
           sleep 5  # 等服務啟動
+          pytest --maxfail=1 --disable-warnings -q
 
       # 透過 newman 跑測試
       - name: Run Postman tests
@@ -45,10 +46,6 @@ jobs:
             --environment FastAPI_Test.postman_environment.json \
             --reporters cli,junit \
             --reporter-junit-export newman-results.xml
-
-      - name: Run pytest tests
-        run: |
-          pytest --maxfail=1 --disable-warnings -q
 
       # 上傳測試報告（GitHub Actions 甚至可以 archive 作為 artifact）
       - name: Upload test report
