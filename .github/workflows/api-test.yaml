@@ -27,7 +27,7 @@ jobs:
       # 啟動 FastAPI（背景執行）
       - name: Start FastAPI
         run: |
-          python3 -m venv .venv
+          python -m venv .venv
           source .venv/bin/activate
           pip install fastapi uvicorn sqlalchemy pymysql
           uvicorn main:app --host 0.0.0.0 --port 8000 &
