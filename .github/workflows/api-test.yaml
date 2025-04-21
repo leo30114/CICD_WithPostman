@@ -24,7 +24,7 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name Install pytest & HTTPX
+      - name: Install pytest & HTTPX
         run: |
           python -m pip install --upgrade pip
           pip install pytest httpx pytest-asyncio
